@@ -1,0 +1,80 @@
+@model SupplierPriceTracking.Models.Material
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<h4>Material</h4>
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <div class="form-group mb-3">
+                <label asp-for="Code" class="control-label fw-bold"></label>
+                <input asp-for="Code" class="form-control" />
+                <span asp-validation-for="Code" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Name" class="control-label fw-bold"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Unit" class="control-label fw-bold"></label>
+                <input asp-for="Unit" class="form-control" />
+                <span asp-validation-for="Unit" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Category" class="control-label fw-bold"></label>
+                <input asp-for="Category" class="form-control" />
+                <span asp-validation-for="Category" class="text-danger"></span>
+            </div>
+
+            <!-- ANLIK SAATİ VE TARİHİ OTOMATİK DOLDURAN ALAN -->
+            <div class="form-group mb-3">
+                <label asp-for="CreatedDate" class="control-label fw-bold"></label>
+                <div class="input-group">
+                    <input asp-for="CreatedDate"
+                           id="createdDateInput"
+                           type="datetime-local"
+                           step="60"
+                           max="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")"
+                           class="form-control"
+                           value="@Model.CreatedDate.ToString("yyyy-MM-ddTHH:mm")" />
+                    <button type="button" class="btn btn-outline-secondary" onclick="setCurrentDateTime()">Now</button>
+                </div>
+                <span asp-validation-for="CreatedDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        function setCurrentDateTime() {
+            const now = new Date();
+            // Yerel saat farkını hesaba katarak formatlama (yyyy-MM-ddTHH:mm)
+            now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+            document.getElementById("createdDateInput").value = now.toISOString().slice(0, 16);
+        }
+    </script>
+}

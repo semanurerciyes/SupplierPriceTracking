@@ -1,0 +1,48 @@
+﻿@model SupplierPriceTracking.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Sign In";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - SupplierPriceTracking</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+<body class="bg-light d-flex align-items-center justify-content-center" style="height: 100vh;">
+    <div class="card shadow-sm" style="width: 380px;">
+        <div class="card-body p-4">
+            <h4 class="card-title text-center mb-1 fw-bold">SupplierPriceTracking</h4>
+            <p class="text-muted text-center small mb-4">Sign in to your account</p>
+
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3 small"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Username" class="form-label fw-semibold small">Username</label>
+                    <input asp-for="Username" class="form-control" placeholder="admin or viewer" autocomplete="off" />
+                    <span asp-validation-for="Username" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label fw-semibold small">Password</label>
+                    <input asp-for="Password" class="form-control" placeholder="••••••••" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100 mt-2">Sign In</button>
+            </form>
+
+            <div class="mt-4 p-2 bg-light border rounded small text-muted">
+                <strong>Demo Accounts:</strong><br />
+                • Admin: <code>admin</code> / <code>admin123</code><br />
+                • Viewer: <code>viewer</code> / <code>viewer123</code>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

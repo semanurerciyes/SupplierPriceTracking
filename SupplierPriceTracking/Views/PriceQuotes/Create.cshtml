@@ -1,0 +1,80 @@
+@model SupplierPriceTracking.Models.PriceQuote
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PriceQuote</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group mb-3">
+                <label asp-for="MaterialId" class="control-label">Material</label>
+                <select asp-for="MaterialId" class="form-control" asp-items="ViewBag.MaterialId">
+                    <option value="">-- Please Select Material --</option>
+                </select>
+                <span asp-validation-for="MaterialId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="SupplierId" class="control-label">Supplier</label>
+                <select asp-for="SupplierId" class="form-control" asp-items="ViewBag.SupplierId">
+                    <option value="">-- Please Select Supplier --</option>
+                </select>
+                <span asp-validation-for="SupplierId" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Price" class="control-label">Price</label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+
+            <!-- PARA BİRİMİ (DATALIST) KISMI -->
+            <div class="form-group mb-3">
+                <label asp-for="Currency" class="control-label">Currency (₺, $, etc.)</label>
+                <input asp-for="Currency" list="currencyOptions" class="form-control" placeholder="Select or type..." autocomplete="off" />
+                <datalist id="currencyOptions">
+                    <option value="₺">TRY</option>
+                    <option value="$">USD</option>
+                    <option value="€">EUR</option>
+                    <option value="£">GBP</option>
+                    <option value="¥">JPY</option>
+                </datalist>
+                <span asp-validation-for="Currency" class="text-danger"></span>
+            </div>
+            <!-- ----------------------------- -->
+
+            <div class="form-group mb-3">
+                <label asp-for="ValidFrom" class="control-label">Valid From</label>
+                <input asp-for="ValidFrom" class="form-control" type="date" />
+                <span asp-validation-for="ValidFrom" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="ValidTo" class="control-label">Valid To</label>
+                <input asp-for="ValidTo" class="form-control" type="date" />
+                <span asp-validation-for="ValidTo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mt-3">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
