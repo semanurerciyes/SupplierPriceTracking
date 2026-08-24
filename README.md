@@ -21,8 +21,4 @@ An enterprise web application developed with **ASP.NET Core MVC**, **EF Core**, 
 
 ---
 
-### 🚀 Quick Start
-1. Configure connection string in `appsettings.json`.
-2. Apply database migrations:
-   ```bash
-   dotnet ef database update
+
